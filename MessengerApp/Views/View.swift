@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class View: UIView {
     
@@ -19,10 +20,17 @@ class View: UIView {
         super.init(frame: frame)
         
         addSubview(label)
+        
+        makeConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func makeConstraints() {
+        label.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }

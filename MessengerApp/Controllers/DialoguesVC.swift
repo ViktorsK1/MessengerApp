@@ -7,11 +7,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DialoguesVC: UIViewController {
 
+    private let mainView = View()
+    
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
 
