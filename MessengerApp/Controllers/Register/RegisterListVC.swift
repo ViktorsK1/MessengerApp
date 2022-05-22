@@ -8,22 +8,40 @@
 import UIKit
 
 class RegisterListVC: UIViewController {
+    
+    private let registerListView = RegisterListView()
+    
+    override func loadView() {
+        self.view = registerListView
+        setupNavigationController()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupNavigationController() {
+        navigationController?.navigationBar.barTintColor = UIColor.systemBlue
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.tintColor = .white
+        
+        if #available(iOS 15.0, *) {
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.backgroundColor = UIColor.systemGray3
+            navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+            navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        }
+        
+        navigationItem.title = "Список пользователей"
+        
+        //            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        //            navigationItem.rightBarButtonItem?.tintColor = .white
+        
     }
-    */
 
 }

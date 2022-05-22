@@ -6,6 +6,8 @@
 //
 
 import UIKit
+//import FirebaseAuth
+import FirebaseDatabase 
 
 class RegisterVC: UIViewController {
 
@@ -24,7 +26,7 @@ class RegisterVC: UIViewController {
     
 
     // MARK: - Navigation
-    func setupNavigationController() {
+    private func setupNavigationController() {
         navigationController?.navigationBar.barTintColor = UIColor.systemBlue
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
@@ -55,13 +57,30 @@ class RegisterVC: UIViewController {
             return
         }
         
+        let vc = RegisterListVC()
+        navigationController?.pushViewController(vc, animated: true)
+        
         //Firebase start
+        
+        DatabaseManager.shared.userExists(with: name, comletion: { [weak self] exists in
+            
+            guard let strongSelf = self else { return }
+            
+            guard !exists else {
+                // user already exists
+                strongSelf.alertUserStartError(message: "Кажется уже есть зарегестрированный пользователь с таким именем.")
+                return
+            }
+            
+            DatabaseManager.shared.insertUser(with: ChatAppUser(name: name))
+        })
+        
     }
     
     //MARK: call alert than name wasn't added in textField
     
-    private func alertUserStartError() {
-        let alert = UIAlertController(title: "Предупреждение", message: "Пожалуйста введите свое имя для продолжения", preferredStyle: .alert)
+    private func alertUserStartError(message: String = "Пожалуйста введите свое имя для продолжения.") {
+        let alert = UIAlertController(title: "Предупреждение", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: .none))
         present(alert, animated: true, completion: .none)
     }
