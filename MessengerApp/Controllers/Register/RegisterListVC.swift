@@ -1,5 +1,5 @@
 //
-//  RegisterViewController.swift
+//  LoginViewController.swift
 //  MessengerApp
 //
 //  Created by Виктор Куля on 21.05.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterListVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

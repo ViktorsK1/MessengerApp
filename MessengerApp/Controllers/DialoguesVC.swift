@@ -19,6 +19,17 @@ class DialoguesVC: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let isLogedIn = UserDefaults.standard.bool(forKey: "logged_in")
+        
+        if !(isLogedIn) {
+            
+        }
+        
+    }
 
 
 }
